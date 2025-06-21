@@ -1,8 +1,15 @@
+import 'package:chatapp/services.dart';
 import 'package:flutter/material.dart';
 
-class Forgot extends StatelessWidget {
+class Forgot extends StatefulWidget {
   Forgot({super.key});
 
+  @override
+  State<Forgot> createState() => _ForgotState();
+}
+
+class _ForgotState extends State<Forgot> {
+  TextEditingController emailcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,6 +22,7 @@ class Forgot extends StatelessWidget {
             Image.asset("asset/for.png"),
             TextField(decoration: InputDecoration()),
             TextField(
+              controller: emailcontroller,
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.mail),
                 hintText: "Email",
@@ -27,7 +35,9 @@ class Forgot extends StatelessWidget {
             ),
             SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Forgott(email: emailcontroller.text, context: context);
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.lightBlue,
               ),

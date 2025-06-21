@@ -1,10 +1,18 @@
 import 'package:chatapp/forgot.dart';
 import 'package:chatapp/reg.dart';
+import 'package:chatapp/services.dart';
 import 'package:flutter/material.dart';
 
-class Logins extends StatelessWidget {
+class Logins extends StatefulWidget {
   Logins({super.key});
 
+  @override
+  State<Logins> createState() => _LoginsState();
+}
+
+class _LoginsState extends State<Logins> {
+  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController passcontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,6 +24,7 @@ class Logins extends StatelessWidget {
           children: [
             Image.asset("asset/login bg.png"),
             TextField(
+              controller: emailcontroller,
               decoration: InputDecoration(
                 hintText: "Email",
                 filled: true,
@@ -28,6 +37,7 @@ class Logins extends StatelessWidget {
             ),
             SizedBox(height: 30, width: 30),
             TextField(
+              controller: passcontroller,
               obscureText: true,
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.lock),
@@ -57,7 +67,13 @@ class Logins extends StatelessWidget {
             ),
             SizedBox(height: 25),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Login(
+                  email: emailcontroller.text,
+                  password: passcontroller.text,
+                  context: context,
+                );
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color.fromARGB(255, 37, 147, 232),
               ),

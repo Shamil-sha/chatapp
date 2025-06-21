@@ -1,8 +1,18 @@
+import 'package:chatapp/services.dart';
 import 'package:flutter/material.dart';
 
-class Registers extends StatelessWidget {
+class Registers extends StatefulWidget {
   Registers({super.key});
 
+  @override
+  State<Registers> createState() => _RegistersState();
+}
+
+class _RegistersState extends State<Registers> {
+  TextEditingController namecontroller = TextEditingController();
+  TextEditingController emailcontroller = TextEditingController();
+  TextEditingController passcontroller = TextEditingController();
+  TextEditingController repasscontroller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -13,6 +23,7 @@ class Registers extends StatelessWidget {
           children: [
             Image.asset("asset/reg.jpg"),
             TextField(
+              controller: namecontroller,
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.person),
                 hintText: "Enter full name",
@@ -25,6 +36,7 @@ class Registers extends StatelessWidget {
             ),
             SizedBox(height: 20),
             TextField(
+              controller: emailcontroller,
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.mail),
                 hintText: "Email",
@@ -37,6 +49,7 @@ class Registers extends StatelessWidget {
             ),
             SizedBox(height: 20),
             TextField(
+              controller: passcontroller,
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.lock),
                 hintText: "Password",
@@ -49,6 +62,7 @@ class Registers extends StatelessWidget {
             ),
             SizedBox(height: 20),
             TextField(
+              controller: repasscontroller,
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.lock),
                 hintText: "Re-Password",
@@ -61,7 +75,15 @@ class Registers extends StatelessWidget {
             ),
             SizedBox(height: 20),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                regi(
+                  name: namecontroller.text,
+                  email: emailcontroller.text,
+                  password: passcontroller.text,
+                  repassword: repasscontroller.text,
+                  context: context,
+                );
+              },
               style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
               child: Text(
                 "Register",
